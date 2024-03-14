@@ -21,8 +21,14 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable()
-                .authorizeHttpRequests(ahr -> ahr.requestMatchers("").permitAll().anyRequest().authenticated()))
+        http.csrf(csrf -> {
+            try {
+                csrf.disable()
+                        .authorizeHttpRequests(ahr -> ahr.requestMatchers("/api/v1/auth/**").permitAll().anyRequest().authenticated());
+            } catch (Exception e) {
+                throw new RuntimeException(e); // Forgive me god
+            }
+        })
                 .sessionManagement(
                         sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
