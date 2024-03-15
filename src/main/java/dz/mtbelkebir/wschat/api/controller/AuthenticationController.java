@@ -8,6 +8,7 @@ import dz.mtbelkebir.wschat.api.controller.web.AuthenticationResponse;
 import dz.mtbelkebir.wschat.api.controller.web.RegistrationRequest;
 import dz.mtbelkebir.wschat.api.exception.UserAlreadyExistsException;
 import dz.mtbelkebir.wschat.api.service.AuthenticationService;
+import dz.mtbelkebir.wschat.api.util.GenericResponse;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
@@ -23,20 +24,21 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegistrationRequest request) {
+    public ResponseEntity<GenericResponse<?>> register(@RequestBody RegistrationRequest request) {
         try {
             authenticationService.register(request);
         } catch (UserAlreadyExistsException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("This username is taken");
+            GenericResponse res = GenericResponse.builder().success(false).message("This username is taken").build();
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(res);
         }
-
-        return ResponseEntity.ok().body("Registration successful !");
+        GenericResponse res = GenericResponse.builder().success(true).message("Registration successful !").build();
+        return ResponseEntity.ok().body(res);
     }
     
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest request) {
-        var reponse = authenticationService.login(request);
-        return ResponseEntity.ok().body(reponse);
+    public ResponseEntity<GenericResponse<?>> login(@RequestBody AuthenticationRequest request) {
+        var response = authenticationService.login(request);
+        return ResponseEntity.ok().body(GenericResponse.builder().success(true).data(response).build());
     }
     
 
