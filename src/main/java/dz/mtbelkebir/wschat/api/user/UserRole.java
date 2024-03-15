@@ -1,4 +1,4 @@
-package dz.mtbelkebir.wschat.api.model;
+package dz.mtbelkebir.wschat.api.user;
 
 public enum UserRole {
     USER

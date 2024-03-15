@@ -1,4 +1,4 @@
-package dz.mtbelkebir.wschat.api.controller.web;
+package dz.mtbelkebir.wschat.api.auth;
 
 import lombok.NonNull;
 
