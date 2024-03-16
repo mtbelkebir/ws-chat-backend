@@ -1,4 +1,5 @@
-package dz.mtbelkebir.wschat.api.controller.web;
+package dz.mtbelkebir.wschat.api.auth;
+
 
 public record AuthenticationResponse(String token) {
 }
