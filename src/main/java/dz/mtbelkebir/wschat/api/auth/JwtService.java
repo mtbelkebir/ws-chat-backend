@@ -1,4 +1,4 @@
-package dz.mtbelkebir.wschat.api.service;
+package dz.mtbelkebir.wschat.api.auth;
 
 import java.security.Key;
 import java.util.Date;
@@ -45,7 +45,7 @@ public class JwtService {
     public String generateToken(UserDetails userDetails) {
         return Jwts.builder()
             .issuedAt(new Date(System.currentTimeMillis()))
-            .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 3)) // +3 hours
+            .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) // +24 hours
             .subject(userDetails.getUsername())
             .signWith(getSigningKey())
             .compact();

@@ -1,17 +1,15 @@
-package dz.mtbelkebir.wschat.api.service;
+package dz.mtbelkebir.wschat.api.auth;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import dz.mtbelkebir.wschat.api.auth.AuthenticationRequest;
-import dz.mtbelkebir.wschat.api.auth.AuthenticationResponse;
-import dz.mtbelkebir.wschat.api.auth.RegistrationRequest;
+
 import dz.mtbelkebir.wschat.api.exception.UserAlreadyExistsException;
-import dz.mtbelkebir.wschat.api.model.User;
-import dz.mtbelkebir.wschat.api.model.UserRepository;
-import dz.mtbelkebir.wschat.api.model.UserRole;
+import dz.mtbelkebir.wschat.api.user.User;
+import dz.mtbelkebir.wschat.api.user.UserRepository;
+import dz.mtbelkebir.wschat.api.user.UserRole;
 import lombok.RequiredArgsConstructor;
 
 @Service
