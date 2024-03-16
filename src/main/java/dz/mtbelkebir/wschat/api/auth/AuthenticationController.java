@@ -1,12 +1,9 @@
-package dz.mtbelkebir.wschat.api.controller;
+package dz.mtbelkebir.wschat.api.auth;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dz.mtbelkebir.wschat.api.controller.web.AuthenticationRequest;
-import dz.mtbelkebir.wschat.api.controller.web.RegistrationRequest;
 import dz.mtbelkebir.wschat.api.exception.UserAlreadyExistsException;
-import dz.mtbelkebir.wschat.api.service.AuthenticationService;
 import dz.mtbelkebir.wschat.api.util.GenericResponse;
 import lombok.RequiredArgsConstructor;
 
