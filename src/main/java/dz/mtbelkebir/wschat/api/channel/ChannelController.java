@@ -1,7 +1,8 @@
 package dz.mtbelkebir.wschat.api.channel;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import dz.mtbelkebir.wschat.api.exception.ChannelNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 
 import dz.mtbelkebir.wschat.api.util.GenericResponse;
@@ -11,12 +12,6 @@ import lombok.RequiredArgsConstructor;
 
 
 import org.springframework.http.ResponseEntity;
-
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-
 
 
 @RequiredArgsConstructor
@@ -33,6 +28,19 @@ public class ChannelController {
         return ResponseEntity.ok().body(GenericResponse.builder().message("Channel created successfully !").data(c).build());
     }
     
+    @GetMapping("/{id}/join")
+    public ResponseEntity<?> joinChannel(@PathVariable Long id) {
+        try {
+            channelService.joinChannel(id);
+        } catch (ChannelNotFoundException e) {
+            return ResponseEntity
+                    .status(404)
+                    .body("Channel not found");
+        }
 
-    
+        return ResponseEntity
+                .ok()
+                .body(GenericResponse.builder().success(true).message("You successfully joined the channel").build());
+    }
+
 }
