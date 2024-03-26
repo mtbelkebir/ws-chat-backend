@@ -24,7 +24,7 @@ public class SecurityConfig {
         http.csrf(csrf -> {
             try {
                 csrf.disable()
-                        .authorizeHttpRequests(ahr -> ahr.requestMatchers("/api/v1/auth/**").permitAll().anyRequest().authenticated());
+                        .authorizeHttpRequests(ahr -> ahr.requestMatchers("/v1/auth/**").permitAll().anyRequest().authenticated());
             } catch (Exception e) {
                 throw new RuntimeException(e); // Forgive me god
             }
