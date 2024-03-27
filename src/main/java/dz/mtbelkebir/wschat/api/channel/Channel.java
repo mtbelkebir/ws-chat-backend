@@ -2,6 +2,8 @@ package dz.mtbelkebir.wschat.api.channel;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import dz.mtbelkebir.wschat.api.user.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,6 +30,7 @@ public class Channel {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "owner_id")
+    @JsonIgnoreProperties({"ownedChannels", "channelMemberships"})
     private User owner;
 
     @ManyToMany
